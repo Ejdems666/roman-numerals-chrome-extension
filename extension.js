@@ -1,10 +1,21 @@
-let romanNumberMemory = [];
+executeAsync(function() {
+    findAndReplaceDOMText(document.body, {
+        find: new RegExp(/\d+/, 'g'),
+        replace: replacer,
+    });
+});
+
+function executeAsync(callback) {
+    setTimeout(callback, 0);
+}
+
 function replacer(node, match) {
     let matchedString = match[0];
     let arabicNumber = parseInt(matchedString);
-    let romanNumber = getRomanNumber(arabicNumber);
-    return romanNumber;
+    return getRomanNumber(arabicNumber);
 }
+
+let romanNumberMemory = [];
 function getRomanNumber(arabicNumber) {
     let alreadyConvertedNumber = romanNumberMemory.find(function (record) {
         return record.arabicNumber === arabicNumber;
@@ -14,10 +25,8 @@ function getRomanNumber(arabicNumber) {
         romanNumberMemory.push({
             arabicNumber: arabicNumber, romanNumber: romanNumber
         });
-        console.log(romanNumberMemory);
         return romanNumber;
     } else {
-        console.log('saved computation for:',alreadyConvertedNumber);
         return alreadyConvertedNumber.romanNumber;
     }
 }
@@ -47,8 +56,7 @@ function convertArabicNumeralToRoman(arabicNumber) {
     }
     return romanNumber;
 }
-
-function getRomanNumeralsWithOccurrencesWithoutSubtraction(arabicNumberCheck) {
+function getRomanNumeralsWithOccurrencesWithoutSubtraction(arabicNumber) {
     let romanNumerals = [
         {symbol: "M", value: 1000},
         {symbol: "D", value: 500},
@@ -59,12 +67,12 @@ function getRomanNumeralsWithOccurrencesWithoutSubtraction(arabicNumberCheck) {
         {symbol: "I", value: 1}
     ];
     let romanNumeralsWithOccurrences = romanNumerals.map(function (romanNumeral) {
-        let division = Math.floor(arabicNumberCheck / romanNumeral.value);
+        let division = Math.floor(arabicNumber / romanNumeral.value);
         romanNumeral.occurrence = division;
-        arabicNumberCheck -= division * romanNumeral.value
+        arabicNumber -= division * romanNumeral.value
         return romanNumeral;
     });
-    if (arabicNumberCheck !== 0) {
+    if (arabicNumber !== 0) {
         console.log('ERROR, aranbicNumberCheck is not 0!');
     }
     return romanNumeralsWithOccurrences;
@@ -77,14 +85,3 @@ function getHigherRomanNumeralForSubtraction(offset, romanNumerals, arabicNumber
     } while (higherRomanNumeral.value < arabicNumberCheck);
     return higherRomanNumeral;
 }
-
-function executeAsync(callback) {
-    setTimeout(callback, 0);
-}
-
-executeAsync(function() {
-    findAndReplaceDOMText(document.body, {
-        find: new RegExp(/\d+/, 'g'),
-        replace: replacer,
-    });
-});
