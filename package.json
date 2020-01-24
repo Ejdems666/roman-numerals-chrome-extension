@@ -1,0 +1,23 @@
+{
+  "name": "roman-numerals-chrome-extension",
+  "version": "1.0.0",
+  "description": "converts arabic numerals to roman numerals on a page",
+  "main": "extension.js",
+  "dependencies": {
+    "findandreplacedomtext": "^0.4.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ejdems666/roman-numerals-chrome-extension.git"
+  },
+  "author": "Adam Becvar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ejdems666/roman-numerals-chrome-extension/issues"
+  },
+  "homepage": "https://github.com/Ejdems666/roman-numerals-chrome-extension#readme"
+}
